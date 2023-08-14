@@ -17,7 +17,7 @@ on:
 
 jobs:
   # Bulid, test and deploy the project to DEV environment
-  build and deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
