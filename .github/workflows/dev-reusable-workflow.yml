@@ -44,32 +44,37 @@ jobs:
         uses: s4u/maven-settings-action@v2.8.0
         with:
           servers: |
-            [{
+            [
+              {
                 "id": "anypoint-exchange-v3",
                 "username": "~~~Client~~~",
                 "password": "${{ secrets.MULETALKS_EXCHANGE_CLIENT_ID_AND_SECRET }}"
-            }],
-            [{
-                "id": "nexus",
-                "username": "${{ secrets.MULETALKS_NEXUS_USERNAME }}",
-                "password": "${{ secrets.MULETALKS_NEXUS_PASSWORD }}"
-            },
-            [{
-                "id": "muletalks-snapshots",
-                "username": "${{ secrets.MULETALKS_NEXUS_USERNAME }}",
-                "password": "${{ secrets.MULETALKS_NEXUS_PASSWORD }}"
-            },
-            {
-                "id": "muletalks-releases",
-                "username": "${{ secrets.MULETALKS_NEXUS_USERNAME }}",
-                "password": "${{ secrets.MULETALKS_NEXUS_PASSWORD }}"
-            }]
+              },
+              {
+                  "id": "nexus",
+                  "username": "${{ secrets.MULETALKS_NEXUS_USERNAME }}",
+                  "password": "${{ secrets.MULETALKS_NEXUS_PASSWORD }}"
+              },
+              {
+                  "id": "muletalks-snapshots",
+                  "username": "${{ secrets.MULETALKS_NEXUS_USERNAME }}",
+                  "password": "${{ secrets.MULETALKS_NEXUS_PASSWORD }}"
+              },
+              {
+                  "id": "muletalks-releases",
+                  "username": "${{ secrets.MULETALKS_NEXUS_USERNAME }}",
+                  "password": "${{ secrets.MULETALKS_NEXUS_PASSWORD }}"
+              }
+            ]
           mirrors: |
-            [{
+            [
+              {
                 "id": "nexus-repo",
+                "name": "Nexus Group Repository",
                 "mirrorOf": "*,!anypoint-exchange-v3",
                 "url": "http://34.65.47.116:8081/repository/muletalks-group-repository/"
-            }]
+              }
+            ]
 
       # Builds the mule artifact using Maven
       - name: Build Artifact
