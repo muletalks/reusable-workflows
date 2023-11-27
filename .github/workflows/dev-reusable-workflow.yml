@@ -79,7 +79,8 @@ jobs:
       # Updates the artifact version to include the GitHub run number
       - name: Update Artifact Version
         run: |
-          mvn versions:set -DnewVersion="1.0.0-SNAPSHOT-${{ github.run_number }}"
+          SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
+          mvn versions:set -DnewVersion="1.0.0-SNAPSHOT-$SHORT_SHA"
           mvn versions:commit
 
       # Builds the mule artifact using Maven
