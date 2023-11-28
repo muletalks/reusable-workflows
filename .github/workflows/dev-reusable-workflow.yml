@@ -118,7 +118,18 @@ jobs:
           -Danypoint.platform.muletalks.client_id=$ANYPOINT_PLATFORM_CLIENT_ID \
           -DskipTests=true
 
-      # Publish Snapshot to Nexus
-      - name: Publish Snapsjhot
-        if: success()
-        run: mvn deploy -DskipTests=true
+      # Upload artifact to Nexus
+      - name: Update Artifact Version with Git SHA
+        run: |
+          # Extract the base version (without -SNAPSHOT)
+          BASE_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout | sed 's/-SNAPSHOT//')
+
+          # Get short version of Git SHA
+          SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
+
+          # Combine base version, Git SHA, and -SNAPSHOT
+          NEW_VERSION="${BASE_VERSION}-${SHORT_SHA}-SNAPSHOT"
+
+          # Set the new version
+          mvn versions:set -DnewVersion="$NEW_VERSION"
+          mvn versions:commit
