@@ -2,13 +2,8 @@
 
 name: Deploy the Project to Staging environment
 
+# Trigger manually on workflow_dispatch event
 on:
-  # Trigger on push to release branch
-  push:
-    branches:
-      - develop
-
-  # Trigger manzally on workflow_dispatch
   workflow_call:
     inputs:
       workerType:
