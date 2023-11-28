@@ -2,8 +2,13 @@
 
 name: Deploy the Project to DEV environment
 
-# Trigger when being called by another workflow
 on:
+  # Trigger on push to develop branch
+  push:
+    branches:
+      - develop
+
+  # Trigger manzally on workflow_dispatch
   workflow_call:
     inputs:
       workerType:

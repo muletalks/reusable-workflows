@@ -1,13 +1,27 @@
-# This is a reusable workflow that deploys the project to PROD environment
+# This is a reusable workflow that deploys the project to Staging environment
 
-name: Deploy the Project to PROD environment
+name: Deploy the Project to Staging environment
 
-# Trigger when being called by another workflow
 on:
+  # Trigger on push to release branch
+  push:
+    branches:
+      - develop
+
+  # Trigger manzally on workflow_dispatch
   workflow_call:
+    inputs:
+      workerType:
+        required: false
+        type: string
+        default: 'MICRO'
+      workerCount:
+        required: false
+        type: string
+        default: '1'
 
 jobs:
-  # Bulid, test and deploy the project to PROD environment
+  # Bulid, test and deploy the project to Staging environment
   build-and-deploy:
     runs-on: ubuntu-latest
 
@@ -75,14 +89,14 @@ jobs:
       - name: Get Artifact Name
         run: echo "ARTIFACT_NAME=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)" >> $GITHUB_ENV
 
-      # Deploy to Cloudhub PROD Environment
-      - name: Deploy to PROD
+      # Deploy to Cloudhub Staging Environment
+      - name: Deploy to Staging
         env:
           ARTIFACT_NAME: ${{ env.ARTIFACT_NAME }}
-          CONNECTED_CLIENT_ID: ${{ secrets.MULETALKS_DEPLOYER_PROD_CLIENT_ID }}
-          CONNECTED_CLIENT_SECRET: ${{ secrets.MULETALKS_DEPLOYER_PROD_CLIEN_SECRET }}
-          MULE_ENV: prod
-          ANYPOINT_ENV: PROD
+          CONNECTED_CLIENT_ID: ${{ secrets.MULETALKS_DEPLOYER_STAGING_CLIENT_ID }}
+          CONNECTED_CLIENT_SECRET: ${{ secrets.MULETALKS_DEPLOYER_STAGING_CLIEN_SECRET }}
+          MULE_ENV: staging
+          ANYPOINT_ENV: STAGING
           WORKER_TYPE: ${{ github.event.inputs.workerType }}
           NUMBER_OF_WORKERS: ${{ github.event.inputs.workerCount }}
           REGION: eu-central-1
