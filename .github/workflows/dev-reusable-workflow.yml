@@ -120,4 +120,5 @@ jobs:
 
       # Publish Snapshot to Nexus
       - name: Publish Snapsjhot
+        if: success()
         run: mvn deploy -DskipTests=true
