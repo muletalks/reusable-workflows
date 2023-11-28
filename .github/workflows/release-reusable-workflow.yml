@@ -116,3 +116,18 @@ jobs:
           -Danypoint.platform.muletalks.client_secret=$ANYPOINT_PLATFORM_CLIENT_SECRET \
           -Danypoint.platform.muletalks.client_id=$ANYPOINT_PLATFORM_CLIENT_ID \
           -DskipTests=true
+
+      # Upload Artifact to Nexus Release Repository
+      - name: Upload Artifact to Nexus
+        run: |
+          mvn deploy -DskipTests=true
+
+      # Tag the release
+      - name: Tag Release
+        if: success()
+        run: |
+          # Extract the version number
+          RELEASE_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          # Create a Git tag
+          git tag -a "v$RELEASE_VERSION" -m "Release v$RELEASE_VERSION"
+          git push origin "v$RELEASE_VERSION"
