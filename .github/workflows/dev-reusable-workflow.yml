@@ -117,3 +117,7 @@ jobs:
           -Danypoint.platform.muletalks.client_secret=$ANYPOINT_PLATFORM_CLIENT_SECRET \
           -Danypoint.platform.muletalks.client_id=$ANYPOINT_PLATFORM_CLIENT_ID \
           -DskipTests=true
+
+      # Publish Snapshot to Nexus
+      - name: Publish Snapsjhot
+        run: mvn deploy -DskipTests=true

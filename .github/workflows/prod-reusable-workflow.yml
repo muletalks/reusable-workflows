@@ -5,15 +5,6 @@ name: Deploy the Project to PROD environment
 # Trigger when being called by another workflow
 on:
   workflow_call:
-    inputs:
-      workerType:
-        required: false
-        type: string
-        default: 'MICRO'
-      workerCount:
-        required: false
-        type: string
-        default: '2'
 
 jobs:
   # Bulid, test and deploy the project to PROD environment
@@ -78,8 +69,7 @@ jobs:
 
       # Builds the mule artifact using Maven
       - name: Build Artifact
-        run: |
-          mvn package -DskipTests=true
+        run: mvn package -DskipTests=true
 
       # Read artifactId from POM file and save into a variable
       - name: Get Artifact Name
