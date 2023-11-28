@@ -120,6 +120,7 @@ jobs:
 
       # Upload artifact to Nexus
       - name: Update Artifact Version with Git SHA
+        if: success()
         run: |
           # Extract the base version (without -SNAPSHOT)
           BASE_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout | sed 's/-SNAPSHOT//')
@@ -133,3 +134,8 @@ jobs:
           # Set the new version
           mvn versions:set -DnewVersion="$NEW_VERSION"
           mvn versions:commit
+
+      # Upload Artifact to Nexus
+      - name: Upload Artifact to Nexus
+        run: |
+          mvn deploy -DskipTests=true
