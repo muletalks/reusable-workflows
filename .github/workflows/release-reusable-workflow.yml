@@ -88,8 +88,8 @@ jobs:
       - name: Deploy to Staging
         env:
           ARTIFACT_NAME: ${{ env.ARTIFACT_NAME }}
-          CONNECTED_CLIENT_ID: ${{ secrets.MULETALKS_DEPLOYER_STAGING_CLIENT_ID }}
-          CONNECTED_CLIENT_SECRET: ${{ secrets.MULETALKS_DEPLOYER_STAGING_CLIEN_SECRET }}
+          CONNECTED_CLIENT_ID: ${{ secrets.MULETALKS_DEPLOYER_PREPROD_CLIENT_ID }}
+          CONNECTED_CLIENT_SECRET: ${{ secrets.MULETALKS_DEPLOYER_PREPROD_CLIENT_ID }}
           MULE_ENV: staging
           ANYPOINT_ENV: STAGING
           WORKER_TYPE: ${{ github.event.inputs.workerType }}
@@ -102,7 +102,7 @@ jobs:
           ANYPOINT_PLATFORM_CLIENT_SECRET: ${{ secrets.MULETALKS_ANYPOINT_PLATFORM_CLIENT_SECRET }}
         run: |
           mvn deploy -DmuleDeploy \
-          -Dapplication.name="$ARTIFACT_NAME-v1" \
+          -Dapplication.name="$ARTIFACT_NAME-v1-staging" \
           -Danypoint.platform.muletalks.connectedapp.client_id=$CONNECTED_CLIENT_ID \
           -Danypoint.platform.muletalks.connectedapp.client_secret=$CONNECTED_CLIENT_SECRET \
           -Dmule.env=$MULE_ENV \
