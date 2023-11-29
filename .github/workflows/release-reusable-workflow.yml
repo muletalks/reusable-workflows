@@ -89,7 +89,7 @@ jobs:
         env:
           ARTIFACT_NAME: ${{ env.ARTIFACT_NAME }}
           CONNECTED_CLIENT_ID: ${{ secrets.MULETALKS_DEPLOYER_PREPROD_CLIENT_ID }}
-          CONNECTED_CLIENT_SECRET: ${{ secrets.MULETALKS_DEPLOYER_PREPROD_SECRET }}
+          CONNECTED_CLIENT_SECRET: ${{ secrets.MULETALKS_DEPLOYER_PREPROD_CLIENT_SECRET }}
           MULE_ENV: staging
           ANYPOINT_ENV: STAGING
           WORKER_TYPE: ${{ github.event.inputs.workerType }}
