@@ -42,16 +42,7 @@ jobs:
         with:
           maven-version: 3.6.3
 
-      # Builds the mule artifact using Maven
-      - name: Build Artifact
-        run: |
-          mvn package
-
-      # Reads artifactId from POM file and sets it as an environment variable
-      - name: Get Artifact Name
-        run: echo "ARTIFACT_NAME=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)" >> $GITHUB_ENV
-
-      # PGenerate Settings XML
+      # Generate Settings XML
       - name: Generate Settings XML
         uses: s4u/maven-settings-action@v3.0.0
         with:
@@ -79,6 +70,15 @@ jobs:
                 }
               }
             ]
+
+      # Builds the mule artifact using Maven
+      - name: Build Artifact
+        run: |
+          mvn package
+
+      # Reads artifactId from POM file and sets it as an environment variable
+      - name: Get Artifact Name
+        run: echo "ARTIFACT_NAME=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)" >> $GITHUB_ENV
 
       # Publish Asset to Exchange
       - name: Publish Asset to Exchange
