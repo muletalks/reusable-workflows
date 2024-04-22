@@ -64,8 +64,8 @@ jobs:
               },
               {
                   "id": "MuleRepository",
-                  "username": "${{ secrets.MULETALKS_USERNAME }}",
-                  "password": "${{ secrets.MULETALKS_PASSWORD }}"
+                  "username": "${{ secrets.MULETALKS_EE_REPO_USERNAME }}",
+                  "password": "${{ secrets.MULETALKS_EE_REPO_PASSWORD }}"
               }
             ]
           repositories: |
