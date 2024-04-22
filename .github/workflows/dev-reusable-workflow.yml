@@ -8,8 +8,8 @@ on:
     inputs:
       workerSize:
         required: false
-        type: number
-        default: 0.1
+        type: string
+        default: '0.1'
       workerCount:
         required: false
         type: string
