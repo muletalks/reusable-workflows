@@ -56,11 +56,29 @@ jobs:
         uses: s4u/maven-settings-action@v3.0.0
         with:
           servers: |
-            [{
-                "id": "anypoint-exchange-v3",
-                "username": "~~~Client~~~",
-                "password": "${{ secrets.MULETALKS_DEPLOYER_PREPROD_CLIENT_ID }}~?~${{ secrets.MULETALKS_DEPLOYER_PREPROD_CLIENT_SECRET }}"
-            }]
+            [
+              {
+                  "id": "anypoint-exchange-v3",
+                  "username": "~~~Client~~~",
+                  "password": "${{ secrets.MULETALKS_DEPLOYER_PREPROD_CLIENT_ID }}~?~${{ secrets.MULETALKS_DEPLOYER_PREPROD_CLIENT_SECRET }}"
+              },
+              {
+                  "id": "MuleRepository",
+                  "username": "${{ secrets.MULETALKS_USERNAME }}",
+                  "password": "${{ secrets.MULETALKS_PASSWORD }}"
+              }
+            ]
+          repositories: |
+            [
+              {
+                "id": "MuleRepository",
+                "name": "MuleRepository",
+                "url": "https://repository.mulesoft.org/nexus-ee/content/repositories/releases-ee/",
+                "snapshots": {
+                  "enabled": true
+                }
+              }
+            ]
 
       # Publish Asset to Exchange
       - name: Publish Asset to Exchange
