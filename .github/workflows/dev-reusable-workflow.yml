@@ -45,7 +45,7 @@ jobs:
       # Builds the mule artifact using Maven
       - name: Build Artifact
         run: |
-          mvn package -DskipTests=true
+          mvn package
 
       # Reads artifactId from POM file and sets it as an environment variable
       - name: Get Artifact Name
@@ -65,7 +65,7 @@ jobs:
       # Publish Asset to Exchange
       - name: Publish Asset to Exchange
         run: |
-          mvn deploy
+          mvn deploy -DskipTests=true
 
       # Deploy to Cloudhub DEV Environment
       - name: Deploy to DEV
