@@ -51,8 +51,8 @@ jobs:
       - name: Get Artifact Name
         run: echo "ARTIFACT_NAME=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)" >> $GITHUB_ENV
 
-      # Publish Asset to Exchange before Deployment
-      - name: Publish Asset to Exchange
+      # PGenerate Settings XML
+      - name: Generate Settings XML
         uses: s4u/maven-settings-action@v3.0.0
         with:
           servers: |
@@ -61,6 +61,11 @@ jobs:
                 "username": "~~~Client~~~",
                 "password": "${{ secrets.MULETALKS_DEPLOYER_PREPROD_CLIENT_ID }}~?~${{ secrets.MULETALKS_DEPLOYER_PREPROD_CLIENT_SECRET }}"
             }]
+
+      # Publish Asset to Exchange
+      - name: Publish Asset to Exchange
+        run: |
+          mvn deploy -DskipTests=true
 
       # Deploy to Cloudhub DEV Environment
       - name: Deploy to DEV
