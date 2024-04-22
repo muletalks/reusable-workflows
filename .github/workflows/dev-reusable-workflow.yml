@@ -7,13 +7,16 @@ on:
   workflow_call:
     inputs:
       workerSize:
-        required: false
-        type: string
+        description: 'Size of Mule Worker'
         default: '0.1'
-      workerCount:
         required: false
         type: string
+
+      workerCount:
+        description: 'Amount of Workers / Replicas'
         default: '1'
+        required: false
+        type: string
 
 jobs:
   # Bulid and deploy the project to DEV environment
