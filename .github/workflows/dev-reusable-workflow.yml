@@ -53,7 +53,7 @@ jobs:
         env:
           ARTIFACT_NAME: ${{ env.ARTIFACT_NAME }}
           CONNECTED_CLIENT_ID: ${{ secrets.MULETALKS_DEPLOYER_PREPROD_CLIENT_ID }}
-          CONNECTED_CLIENT_SECRET: ${{ secrets.MULETALKS_DEPLOYER_PREPROD_CLIEN_SECRET }}
+          CONNECTED_CLIENT_SECRET: ${{ secrets.MULETALKS_DEPLOYER_PREPROD_CLIENT_SECRET }}
           ANYPOINT_ENV: DEV
           WORKER_SIZE: ${{ github.event.inputs.workerSize }}
           NUMBER_OF_WORKERS: ${{ github.event.inputs.workerCount }}
