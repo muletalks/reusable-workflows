@@ -65,7 +65,7 @@ jobs:
       # Publish Asset to Exchange
       - name: Publish Asset to Exchange
         run: |
-          mvn deploy -DskipTests=true
+          mvn deploy
 
       # Deploy to Cloudhub DEV Environment
       - name: Deploy to DEV
