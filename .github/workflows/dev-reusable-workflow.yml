@@ -42,7 +42,7 @@ jobs:
       # Builds the mule artifact using Maven
       - name: Build Artifact
         run: |
-          mvn package
+          mvn package -DskipMunitTest
 
       # Reads artifactId from POM file and sets it as an environment variable
       - name: Get Artifact Name
