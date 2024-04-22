@@ -58,6 +58,7 @@ jobs:
           WORKER_TYPE: ${{ github.event.inputs.workerType }}
           NUMBER_OF_WORKERS: ${{ github.event.inputs.workerCount }}
           REGION: eu-central-1
+          TARGET: muletalks-preprod-space
           BUSINESS_GROUP: muletalks
           ANYPOINT_PLATFORM_URI: https://anypoint.mulesoft.com
           ANYPOINT_ANALYTICS_URI: https://analytics-ingest.anypoint.mulesoft.com
@@ -77,4 +78,5 @@ jobs:
           -Danypoint.platform.base_uri=$ANYPOINT_PLATFORM_URI \
           -Danypoint.platform.muletalks.client_secret=$ANYPOINT_PLATFORM_CLIENT_SECRET \
           -Danypoint.platform.muletalks.client_id=$ANYPOINT_PLATFORM_CLIENT_ID \
+          -Danypoint.muletalks.target \
           -DskipTests=true
