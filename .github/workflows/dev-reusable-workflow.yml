@@ -65,12 +65,12 @@ jobs:
           ANYPOINT_PLATFORM_CLIENT_ID: ${{ secrets.MULETALKS_ANYPOINT_PLATFORM_CLIENT_ID }}
           ANYPOINT_PLATFORM_CLIENT_SECRET: ${{ secrets.MULETALKS_ANYPOINT_PLATFORM_CLIENT_SECRET }}
         run: |
-          mvn deploy -DmuleDeploy \
+          mvn clean deploy -DmuleDeploy \
           -Dapplication.name="$ARTIFACT_NAME-v1-dev" \
           -Danypoint.platform.muletalks.connectedapp.client_id=$CONNECTED_CLIENT_ID \
           -Danypoint.platform.muletalks.connectedapp.client_secret=$CONNECTED_CLIENT_SECRET \
           -Danypoint.muletalks.env=$ANYPOINT_ENV \
-          -Danypoint.muletalks.workertype=$WORKER_Size \
+          -Danypoint.muletalks.workersize=$WORKER_SIZE \
           -Danypoint.muletalks.numberofworkers=$NUMBER_OF_WORKERS \
           -Danypoint.muletalks.region=$REGION \
           -Danypoint.muletalks.bg=$BUSINESS_GROUP \
